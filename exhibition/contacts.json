@@ -20,7 +20,8 @@
     "date": "2026-10-14",
     "photo": "photos/001_kava.jpg",
     "booth": "",
-    "catalog": ""
+    "catalog": "",
+    "category": "Упаковка"
   },
   {
     "country": "Франция",
@@ -43,7 +44,8 @@
     "priority": "",
     "date": "2026-10-14",
     "photo": "photos/002_effervescence_lab.jpg ; photos/002b_effervescence_lab_brochure.jpg",
-    "catalog": ""
+    "catalog": "",
+    "category": "Разработка формул (R&D)"
   },
   {
     "country": "Япония",
@@ -66,7 +68,8 @@
     "next_step": "Посмотреть каталог по ссылке, выбрать интересные ингредиенты; связаться через сайт / Antoine Joubin",
     "priority": "",
     "date": "2026-10-14",
-    "photo": "photos/003_iwase_cosfa.jpg"
+    "photo": "photos/003_iwase_cosfa.jpg",
+    "category": "Сырьё / ингредиенты"
   },
   {
     "country": "Франция",
@@ -89,6 +92,55 @@
     "next_step": "Узнать условия контрактного производства (MOQ, сроки, декоративная косметика), найти контакт отдела CDMO",
     "priority": "",
     "date": "2026-10-14",
-    "photo": "photos/004_vabel.jpg"
+    "photo": "photos/004_vabel.jpg",
+    "category": "Контрактное производство"
+  },
+  {
+    "category": "Логистика",
+    "country": "Германия",
+    "city": "Головной офис группы: Кемптен, Германия. Французский офис: Шанверри (Вандея); косметический склад — Жанвиль-ан-Бос",
+    "company": "DACHSER France S.A.S. (DACHSER Cosmetics Logistics)",
+    "booth": "Cosmetic 360",
+    "website": "https://www.dachser.fr",
+    "catalog": "https://www.dachser.com/en/cosmetic-logistics",
+    "profile": "Логистика для косметики и парфюмерии: доставка по Европе и миру, контрактное складирование, авиа- и морские перевозки. Доп. услуги: распаковка паллет, возвраты и нераспроданное, сборка и установка дисплеев, комплектация коробок",
+    "contact_name": "Alexandre Ilias",
+    "introduced_as": "",
+    "position": "Business Development Manager, DACHSER Cosmetics Logistics — Франция, Магриб, Турция",
+    "email": "alexandre.ilias@dachser.com",
+    "phone": "+33 6 07 86 48 57",
+    "address": "DACHSER France S.A.S., Regional Head Office France & Maghreb, 1 avenue de l'Europe, CS 80007 – La Verrie, 85130 Chanverrie, Франция",
+    "card_notes": "Визитка",
+    "discussed": "Не общались — взяли визитку на всякий случай",
+    "web_info": "DACHSER — крупный немецкий логистический оператор. Отраслевое решение Cosmetics Logistics запущено сначала во Франции, затем в Испании и Португалии. Склады заточены под косметику, прямой доступ к европейской транспортной сети. Оценка EcoVadis, статус Full AEO (упрощённое таможенное оформление), ISO 27001; видеонаблюдение на складах, мониторинг машин; электромобили для доставки.",
+    "sources": "https://www.dachser.com/en/cosmetic-logistics ; https://www.cosmetic-valley.com/en/annuaire-entreprises/dachser-cosmetics-logistics ; https://www.dachser.com/en/mediaroom/Cosmetics-in-expert-hands-21097 ; https://www.industries-cosmetiques.fr/en/a-new-logistics-solution-for-cosmetics-professionals/",
+    "next_step": "На случай поставок из Франции/ЕС: запросить условия и тарифы на доставку и складирование",
+    "priority": "Низкий",
+    "date": "2026-10-14",
+    "photo": "photos/005_dachser.jpg"
+  },
+  {
+    "category": "Контрактное производство",
+    "country": "Китай",
+    "city": "Хучжоу, пров. Чжэцзян (фабрика); офис — Линьань (Ханчжоу), Чжэцзян",
+    "company": "Lamer Beauty (Huzhou) Co., Ltd / Zhejiang Bohan International Co., Ltd",
+    "booth": "Cosmetic 360, «Beauty Ville» (китайская зона)",
+    "website": "www.lamerbeauty.uk ; www.rsgroup.cn",
+    "catalog": "",
+    "profile": "Вероятно ODM/контрактное производство косметики (по данным о группе Lamer: парфюмерия, уход, декоративная косметика). Уточнить ассортимент",
+    "contact_name": "Freda Tang",
+    "introduced_as": "",
+    "position": "CEO",
+    "email": "hzrs@rsgroup.cn ; hzrs@hzlamer.com (размыто — проверить)",
+    "phone": "Mob/WhatsApp: +86 153 0571 6666 ; +86 138 5801 7730 (размыто — проверить)",
+    "address": "Офис: RM2805, Yuanxin Starry Center, Dayuan Road, Qingshanhu Sub-district, Lin'an District, Zhejiang 311300. Фабрика: No.20 Yangshanwu Road, Daixi Town, Wuxing District, Huzhou, Zhejiang 313000 (адреса размыты — проверить)",
+    "card_notes": "Визитка",
+    "discussed": "Зашли на стенд, взяли контакты. Продукты для губ — со слов компании «легко сделать». Интересует также разработка парфюмов",
+    "web_info": "Сайт lamerbeauty.uk указывает на группу Lamer (Великобритания): её дочерняя компания Hangzhou Lamer Cosmetics делает ODM — парфюмерию, уход, косметику; выставлялась на InterCHARM 2019 (Москва). Линьань — район Ханчжоу, так что это, скорее всего, та же группа. Про Lamer Beauty (Huzhou) и Zhejiang Bohan отдельной информации не найдено.",
+    "sources": "https://prnewswire.co.uk/news-releases/chinese-cosmetics-giant-hangzhou-lamer-cosmetics-debuts-at-intercharm-2019-872021252.html",
+    "next_step": "Написать в WhatsApp Freda Tang: каталог; парфюм — свой ли завод и парфюмеры, сертификаты IFRA; губы — образцы, MOQ, сроки; документы для ЕС (GMP ISO 22716, CPSR/PIF); условия ODM под наш бренд",
+    "priority": "",
+    "date": "2026-10-14",
+    "photo": "photos/006_lamer_beauty.jpg"
   }
 ]

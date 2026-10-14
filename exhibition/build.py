@@ -9,6 +9,7 @@ from openpyxl.utils import get_column_letter
 HERE = Path(__file__).parent
 COLUMNS = [
     ("country", "Страна производства", 14),
+    ("category", "Тип компании", 18),
     ("city", "Город / регион", 22),
     ("company", "Компания", 24),
     ("booth", "Выставка / стенд", 20),
@@ -86,13 +87,23 @@ def main():
         ])
     total = sm.max_row + 1
     sm.append(["Итого", f"=SUM(B2:B{total - 1})", f"=SUM(C2:C{total - 1})"])
-    for cell in sm[1]:
-        cell.font = Font(name=FONT, bold=True, color="FFFFFF")
-        cell.fill = HEADER_FILL
+
+    # Сводка по типу компании
+    sm.append([])
+    cat_header = sm.max_row + 1
+    sm.append(["Тип компании", "Компаний"])
+    for category in sorted({r["category"] for r in rows}):
+        n = sm.max_row + 1
+        sm.append([category, f"=COUNTIF(Контакты!$C$2:$C${last},A{n})"])
     for row in sm.iter_rows(min_row=2):
         for cell in row:
             cell.font = Font(name=FONT, size=10, bold=row[0].row == total)
-    for col, width in zip("ABC", (24, 12, 20)):
+    for header_row in (1, cat_header):
+        for cell in sm[header_row]:
+            if cell.value:
+                cell.font = Font(name=FONT, bold=True, color="FFFFFF")
+                cell.fill = HEADER_FILL
+    for col, width in zip("ABC", (28, 12, 20)):
         sm.column_dimensions[col].width = width
 
     wb.save(HERE / "contacts.xlsx")
