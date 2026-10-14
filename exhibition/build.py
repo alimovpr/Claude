@@ -106,6 +106,25 @@ def main():
     for col, width in zip("ABC", (28, 12, 20)):
         sm.column_dimensions[col].width = width
 
+    # Компании со стенда INPD (китайская зона) — кто производит на заказ, кто бренд
+    wall = HERE / "inpd_wall.json"
+    if wall.exists():
+        iw = wb.create_sheet("Стенд INPD (Китай)")
+        iw.append(["Компания", "Тип", "Комментарий", "Проверка"])
+        for r in json.loads(wall.read_text(encoding="utf-8")):
+            iw.append([r["company"], r["type"], r["note"], r["check"]])
+        for cell in iw[1]:
+            cell.font = Font(name=FONT, bold=True, color="FFFFFF")
+            cell.fill = HEADER_FILL
+        for row in iw.iter_rows(min_row=2):
+            for cell in row:
+                cell.font = Font(name=FONT, size=10)
+                cell.alignment = Alignment(wrap_text=True, vertical="top")
+        for col, width in zip("ABCD", (32, 26, 70, 16)):
+            iw.column_dimensions[col].width = width
+        iw.freeze_panes = "A2"
+        iw.auto_filter.ref = iw.dimensions
+
     wb.save(HERE / "contacts.xlsx")
 
 
