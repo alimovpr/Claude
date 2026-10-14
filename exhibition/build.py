@@ -11,7 +11,8 @@ COLUMNS = [
     ("country", "Страна производства", 14),
     ("city", "Город / регион", 22),
     ("company", "Компания", 24),
-    ("website", "Сайт", 16),
+    ("booth", "Выставка / стенд", 20),
+    ("website", "Сайт", 18),
     ("profile", "Что производят", 45),
     ("contact_name", "Контакт (по визитке)", 18),
     ("introduced_as", "Как представился", 18),
@@ -73,7 +74,7 @@ def main():
         sm.append([
             country,
             f"=COUNTIF(Контакты!$B$2:$B${last},A{n})",
-            f"=COUNTIFS(Контакты!$B$2:$B${last},A{n},Контакты!$R$2:$R${last},\"Высокий\")",
+            f"=COUNTIFS(Контакты!$B$2:$B${last},A{n},Контакты!$S$2:$S${last},\"Высокий\")",
         ])
     total = sm.max_row + 1
     sm.append(["Итого", f"=SUM(B2:B{total - 1})", f"=SUM(C2:C{total - 1})"])
