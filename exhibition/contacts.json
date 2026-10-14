@@ -262,5 +262,29 @@
     "priority": "",
     "date": "2026-10-14",
     "photo": "photos/011_desjardin.jpg"
+  },
+  {
+    "category": "Сырьё / ингредиенты",
+    "country": "Китай",
+    "city": "Шанхай",
+    "company": "CHANDO Group (Shanghai CHANDO Group Co., Ltd., ранее JALA Group)",
+    "booth": "Cosmetic 360, стенд GB64 (Innovation Route — Raw Materials), зона C-Beauty Journey",
+    "website": "https://en.chandogroup.com",
+    "catalog": "",
+    "profile": "Крупная китайская косметическая группа (основана в 2001 г. в Шанхае). На выставке — собственные запатентованные ингредиенты: HiMurchaSin® пептид (антивозрастной, разработан с помощью ИИ, из полярных дрожжей), PDRN, Space Ginseng Yeast, экстракт горечавки (Gentiana Veitchiorum), Hicustos®, BIO-Revive, Photo-Shield 509. Свои бренды: CHANDO (自然堂), MAYSU, Biorrier, Spring Summer, imine",
+    "contact_name": "",
+    "introduced_as": "",
+    "position": "",
+    "email": "",
+    "phone": "",
+    "address": "Шанхай, Китай",
+    "card_notes": "Фото стенда",
+    "discussed": "",
+    "web_info": "В январе 2024 JALA Group переименована в Shanghai CHANDO Group. Пептид HiMurchaSin найден вместе с институтом Университета Цинхуа: ИИ перебрал 2,8 млн белков дрожжей; используется в 7-м поколении их антивозрастной сыворотки (апрель 2026). 20 научных докладов на конгрессе IFSCC 2026. Данные об эффективности — из пресс-релизов компании. Неясно, продают ли ингредиенты сторонним брендам и делают ли контрактное производство — уточнить.",
+    "sources": "https://en.chandogroup.com/news/40 ; https://kyodonewsprwire.jp/release/202610067388 ; https://www.chinadailyhk.com/article/640844",
+    "next_step": "Уточнить, продают ли свои ингредиенты (HiMurchaSin, PDRN) другим брендам и на каких условиях; есть ли OEM",
+    "priority": "",
+    "date": "2026-10-14",
+    "photo": "photos/012_chando.jpg"
   }
 ]
