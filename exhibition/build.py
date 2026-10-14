@@ -13,6 +13,7 @@ COLUMNS = [
     ("company", "Компания", 24),
     ("booth", "Выставка / стенд", 20),
     ("website", "Сайт", 18),
+    ("catalog", "Каталог", 28),
     ("profile", "Что производят", 45),
     ("contact_name", "Контакт (по визитке)", 18),
     ("introduced_as", "Как представился", 18),
@@ -57,6 +58,12 @@ def main():
             cell.font = Font(name=FONT, size=10)
             cell.alignment = Alignment(wrap_text=True, vertical="top")
             cell.border = BORDER
+        for key in ("website", "catalog"):
+            cell = row[1 + [c[0] for c in COLUMNS].index(key)]
+            url = str(cell.value or "").split(" ")[0]
+            if url.startswith("http") or url.startswith("www."):
+                cell.hyperlink = url if url.startswith("http") else "https://" + url
+                cell.font = Font(name=FONT, size=10, color="0563C1", underline="single")
         row[1].fill = COUNTRY_FILL
         row[1].font = Font(name=FONT, size=10, bold=True)
     ws.column_dimensions["A"].width = 5
@@ -69,12 +76,13 @@ def main():
     sm = wb.create_sheet("По странам")
     sm.append(["Страна производства", "Компаний", "Высокий приоритет"])
     last = len(rows) + 1
+    pr = get_column_letter(2 + [c[0] for c in COLUMNS].index("priority"))
     for country in sorted({r["country"] for r in rows}):
         n = sm.max_row + 1
         sm.append([
             country,
             f"=COUNTIF(Контакты!$B$2:$B${last},A{n})",
-            f"=COUNTIFS(Контакты!$B$2:$B${last},A{n},Контакты!$S$2:$S${last},\"Высокий\")",
+            f"=COUNTIFS(Контакты!$B$2:$B${last},A{n},Контакты!${pr}$2:${pr}${last},\"Высокий\")",
         ])
     total = sm.max_row + 1
     sm.append(["Итого", f"=SUM(B2:B{total - 1})", f"=SUM(C2:C{total - 1})"])

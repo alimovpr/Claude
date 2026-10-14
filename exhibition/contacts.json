@@ -19,7 +19,8 @@
     "priority": "Высокий",
     "date": "2026-10-14",
     "photo": "photos/001_kava.jpg",
-    "booth": ""
+    "booth": "",
+    "catalog": ""
   },
   {
     "country": "Франция",
@@ -41,6 +42,30 @@
     "next_step": "Написать на contact@effervescence-lab.com: условия разработки формулы, сроки, есть ли собственное производство/выпуск партий",
     "priority": "",
     "date": "2026-10-14",
-    "photo": "photos/002_effervescence_lab.jpg ; photos/002b_effervescence_lab_brochure.jpg"
+    "photo": "photos/002_effervescence_lab.jpg ; photos/002b_effervescence_lab_brochure.jpg",
+    "catalog": ""
+  },
+  {
+    "country": "Япония",
+    "city": "Европейский офис: Леваллуа-Перре (пригород Парижа), Франция. Головной офис: Токио",
+    "company": "Iwase Cosfa Europe (группа Iwase Cosfa)",
+    "booth": "Cosmetic 360",
+    "website": "https://iwasecosfa.eu",
+    "catalog": "https://iwasecosfa-eu.covalo.com/",
+    "profile": "Дистрибьютор японского косметического сырья: активные ингредиенты, эмульгаторы, УФ-фильтры, пигменты, текстурирующие агенты. На стенде — Formulation Book «Horizons — Beauty without boundaries» (готовые рецептуры на их ингредиентах)",
+    "contact_name": "",
+    "introduced_as": "",
+    "position": "",
+    "email": "",
+    "phone": "",
+    "address": "92300 Levallois-Perret, Франция",
+    "card_notes": "Буклет Formulation Book «Horizons», QR-код на каталог",
+    "discussed": "Ни с кем не познакомились — взяли буклет",
+    "web_info": "Японская группа, основана в 1931 г., штаб-квартира в Токио; офисы во Франции и США, недавно вышли в Марокко. Материнская компания сертифицирована ISO 9001 и ISO 14001. Коммерческий директор Europe — Antoine Joubin.",
+    "sources": "https://www.cosmetic-valley.com/en/annuaire-entreprises/iwase-cosfa-europe ; https://ledesk.ma/enoff/cosmetique-le-japonais-iwase-cosfa-choisit-le-maroc-pour-souvrir-au-marche-africain/",
+    "next_step": "Посмотреть каталог по ссылке, выбрать интересные ингредиенты; связаться через сайт / Antoine Joubin",
+    "priority": "",
+    "date": "2026-10-14",
+    "photo": "photos/003_iwase_cosfa.jpg"
   }
 ]
