@@ -1,0 +1,32 @@
+{
+  "Platform": "C:\\Program Files\\1cv8\\8.5.1.1343\\bin\\1cv8.exe",
+
+  "Copy": {
+    "Server": "server1c",
+    "Base": "UNF_copy",
+    "User": "Claude",
+    "Password": "ПАРОЛЬ_В_КОПИИ"
+  },
+
+  "Prod": {
+    "Server": "server1c",
+    "Base": "ИМЯ_РАБОЧЕЙ_БАЗЫ_В_КЛАСТЕРЕ",
+    "User": "Claude_deploy",
+    "Password": "ПАРОЛЬ_В_РАБОЧЕЙ"
+  },
+
+  "Extensions": [
+    "ИмяРасширения1",
+    "ИмяРасширения2"
+  ],
+
+  "Telegram": {
+    "Token": "ТОКЕН_НОВОГО_БОТА_ОТ_BOTFATHER",
+    "ChatId": 123456789
+  },
+
+  "DeployWindow": {
+    "From": "22:00",
+    "To": "23:59"
+  }
+}
