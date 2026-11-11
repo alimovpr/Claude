@@ -244,7 +244,7 @@
   "category": "Контрактное производство (готовый продукт для губ)",
   "city": "Чжуншань, пров. Гуандун",
   "company": "Zhongshan Meido Cosmetics Industry Co., Ltd. (MEIDO) / 中山市美都化妆品企业有限公司",
-  "booth": "Cosmopack Asia 2026, AsiaWorld-Expo; павильон Гуандуна (CBGG — Cantonese Business Go Global), номер стенда начинается на 10-…",
+  "booth": "Cosmopack Asia 2026, AsiaWorld-Expo, стенд 10-P02; павильон Гуандуна (CBGG — Cantonese Business Go Global)",
   "website": "www.meidocosmetics.com (из интернета, на визитке сайта нет)",
   "catalog": "",
   "profile": "Готовый продукт для губ под ключ (формула + упаковка), не только упаковка. На стенде с карточками характеристик (интенсивность цвета, финиш, стойкость): Tinted Lip Oil Stick / Tinted Lip Balm (арт. SEF26023), Tinted Repair Lip Serum, Satin Liquid Lipstick, High Pigment Oil Balm в тубе",
@@ -262,5 +262,29 @@
   "priority": "",
   "date": "2026-11-11",
   "photo": "photos/011_meido.jpg ; photos/011b_meido_lip_products.jpg ; photos/011c_meido_card.jpg"
+ },
+ {
+  "country": "Китай",
+  "category": "Контрактное производство (парфюм под ключ)",
+  "city": "Иу, пров. Чжэцзян (по данным из интернета)",
+  "company": "Zhejiang Rifeshow Cosmetics Co., Ltd.",
+  "booth": "Cosmopack Asia 2026, AsiaWorld-Expo, стенд 10-N02 (рядом с Meido, 10-P02)",
+  "website": "",
+  "catalog": "",
+  "profile": "Парфюм под заказ — готовый продукт с упаковкой: флаконы в коробках, подарочные наборы, мини-наборы, арабский стиль. «Интересные штучки»: парфюм-брелоки на цепочках и бусинах, флаконы в виде капкейков, молочных коктейлей, сумочек, мороженого. На стенде заявлены партнёры-поставщики отдушек: Givaudan, Firmenich, Symrise, IFF, Mane, Robertet, CPL Aromas, Iberchem; сертификаты Sedex, ISO 22716, GMPC, FDA; клиенты/лицензии: Walmart, Primark, Kmart, Disney, Marvel Avengers, Hello Kitty, Real Madrid",
+  "contact_name": "Joey Zou",
+  "introduced_as": "",
+  "position": "не указана (контакт с бейджа участника)",
+  "email": "",
+  "phone": "",
+  "address": "По данным из интернета: No.67 Dashi Road, Fotang Town, Yiwu, Zhejiang (сверить)",
+  "card_notes": "Визитки нет — снят бейдж участника: Joey Zou, Zhejiang Rifeshow Cosmetics Co., Ltd, China, стенд 10-N02",
+  "discussed": "Упаковка парфюма и всякие интересные штучки — в табличку как вариант",
+  "web_info": "Производитель парфюма под чужой маркой (OEM/private label) из Иу; раньше назывался Pujiang Onlyou Cosmetics, основан в 1996 г. Заявляют 150 млн флаконов в год, площадку 70 000 м² и собственный центр разработки ароматов. По таможенным данным США — сотни поставок, основной товар — парфюм. Свои торговые марки: Rifeshow, Mystical и др.; среди них есть VICTORIADIOR — название, похожее на чужие известные бренды, это стоит учитывать. Мощности — со слов компании, независимой проверки не нашёл.",
+  "sources": "https://www.globalsources.com/zhejiang-rifeshow/company-profile_6008858634382.htm ; https://www.importgenius.com/suppliers/zhejiang-rifeshow-cosmetics-co-ltd ; https://panjiva.com/Zhejiang-Rifeshow-Cosmetics-Co-Ltd/48046989 ; https://trademarks.justia.com/owners/zhejiang-rifeshow-cosmetics-co-ltd-3307208",
+  "next_step": "Нужны контакты Joey Zou (email/WeChat). Запросить каталог парфюм-брелоков и фигурных флаконов, MOQ, цены под ключ; уточнить, продают ли упаковку отдельно без наполнения",
+  "priority": "",
+  "date": "2026-11-11",
+  "photo": "photos/012_rifeshow.jpg ; photos/012b_rifeshow_fun_items.jpg ; photos/012c_rifeshow_badge.jpg"
  }
 ]
