@@ -2,13 +2,16 @@
 
 Запуск: python build.py [папка выставки] — по умолчанию папка самого скрипта.
 """
+import io
 import json
 import sys
 from pathlib import Path
 
 from openpyxl import Workbook
+from openpyxl.drawing.image import Image as XLImage
 from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 from openpyxl.utils import get_column_letter
+from PIL import Image as PILImage, ImageOps
 
 HERE = Path(sys.argv[1]).resolve() if len(sys.argv) > 1 else Path(__file__).parent
 COLUMNS = [
@@ -40,6 +43,41 @@ HEADER_FILL = PatternFill("solid", fgColor="1F4E78")
 COUNTRY_FILL = PatternFill("solid", fgColor="DDEBF7")
 THIN = Side(style="thin", color="BFBFBF")
 BORDER = Border(left=THIN, right=THIN, top=THIN, bottom=THIN)
+THUMB_PX = 150  # сторона миниатюры; сами фото лежат в photos/ в полном размере
+IMAGE_EXT = {".jpg", ".jpeg", ".png"}
+
+
+def thumbnail(path):
+    """Уменьшенная копия фото для вставки в ячейку."""
+    im = ImageOps.exif_transpose(PILImage.open(path)).convert("RGB")
+    im.thumbnail((THUMB_PX, THUMB_PX))
+    buf = io.BytesIO()
+    im.save(buf, "JPEG", quality=60)
+    buf.seek(0)
+    return XLImage(buf)
+
+
+def add_thumbnails(ws, rows):
+    """Колонки «Миниатюра N» справа от таблицы: по одной на каждое фото контакта."""
+    photos = [
+        [p for p in (x.strip() for x in r.get("photo", "").split(";"))
+         if p and Path(p).suffix.lower() in IMAGE_EXT and (HERE / p).exists()]
+        for r in rows
+    ]
+    first = len(COLUMNS) + 2
+    for n in range(max(map(len, photos), default=0)):
+        col = get_column_letter(first + n)
+        head = ws.cell(row=1, column=first + n, value=f"Миниатюра {n + 1}")
+        head.font = Font(name=FONT, bold=True, color="FFFFFF")
+        head.fill = HEADER_FILL
+        head.alignment = Alignment(wrap_text=True, vertical="center", horizontal="center")
+        head.border = BORDER
+        ws.column_dimensions[col].width = THUMB_PX / 7 + 1
+    for i, paths in enumerate(photos, 2):
+        for n, p in enumerate(paths):
+            ws.add_image(thumbnail(HERE / p), f"{get_column_letter(first + n)}{i}")
+        if paths:
+            ws.row_dimensions[i].height = max(THUMB_PX * 0.75 + 4, ws.row_dimensions[i].height or 0)
 
 
 def main():
@@ -76,6 +114,7 @@ def main():
         ws.column_dimensions[get_column_letter(idx)].width = width
     ws.freeze_panes = "D2"
     ws.auto_filter.ref = ws.dimensions
+    add_thumbnails(ws, rows)
 
     # Сводка по странам — считается формулами от листа «Контакты»
     sm = wb.create_sheet("По странам")
