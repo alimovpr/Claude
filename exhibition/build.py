@@ -1,6 +1,7 @@
 """Собирает contacts.xlsx из contacts.json (контакты с выставки, сгруппированы по странам).
 
-Запуск: python build.py [папка выставки] — по умолчанию папка самого скрипта.
+Запуск: python build.py [папка выставки] [--simple] — по умолчанию папка самого скрипта.
+--simple — короткая таблица только с контактами (подробности и фото идут в PDF, см. build_pdf.py).
 """
 import io
 import json
@@ -13,7 +14,9 @@ from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 from openpyxl.utils import get_column_letter
 from PIL import Image as PILImage, ImageOps
 
-HERE = Path(sys.argv[1]).resolve() if len(sys.argv) > 1 else Path(__file__).parent
+SIMPLE = "--simple" in sys.argv
+ARGS = [a for a in sys.argv[1:] if not a.startswith("--")]
+HERE = Path(ARGS[0]).resolve() if ARGS else Path(__file__).parent
 COLUMNS = [
     ("country", "Страна производства", 14),
     ("category", "Тип компании", 18),
@@ -38,6 +41,9 @@ COLUMNS = [
     ("date", "Дата", 11),
     ("photo", "Фото", 18),
 ]
+if SIMPLE:
+    keep = ["company", "category", "country", "contact_name", "position", "email", "phone", "website", "address"]
+    COLUMNS = [next(c for c in COLUMNS if c[0] == k) for k in keep]
 FONT = "Arial"
 HEADER_FILL = PatternFill("solid", fgColor="1F4E78")
 COUNTRY_FILL = PatternFill("solid", fgColor="DDEBF7")
@@ -101,7 +107,7 @@ def main():
             cell.font = Font(name=FONT, size=10)
             cell.alignment = Alignment(wrap_text=True, vertical="top")
             cell.border = BORDER
-        for key in ("website", "catalog"):
+        for key in (k for k in ("website", "catalog") if k in [c[0] for c in COLUMNS]):
             cell = row[1 + [c[0] for c in COLUMNS].index(key)]
             url = str(cell.value or "").split(" ")[0]
             if url.startswith("http") or url.startswith("www."):
@@ -112,8 +118,11 @@ def main():
     ws.column_dimensions["A"].width = 5
     for idx, (_, _, width) in enumerate(COLUMNS, 2):
         ws.column_dimensions[get_column_letter(idx)].width = width
-    ws.freeze_panes = "D2"
+    ws.freeze_panes = "C2" if SIMPLE else "D2"
     ws.auto_filter.ref = ws.dimensions
+    if SIMPLE:
+        wb.save(HERE / "contacts.xlsx")
+        return
     add_thumbnails(ws, rows)
 
     # Сводка по странам — считается формулами от листа «Контакты»
