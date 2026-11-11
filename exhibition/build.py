@@ -1,12 +1,16 @@
-"""Собирает contacts.xlsx из contacts.json (контакты с выставки, сгруппированы по странам)."""
+"""Собирает contacts.xlsx из contacts.json (контакты с выставки, сгруппированы по странам).
+
+Запуск: python build.py [папка выставки] — по умолчанию папка самого скрипта.
+"""
 import json
+import sys
 from pathlib import Path
 
 from openpyxl import Workbook
 from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 from openpyxl.utils import get_column_letter
 
-HERE = Path(__file__).parent
+HERE = Path(sys.argv[1]).resolve() if len(sys.argv) > 1 else Path(__file__).parent
 COLUMNS = [
     ("country", "Страна производства", 14),
     ("category", "Тип компании", 18),
