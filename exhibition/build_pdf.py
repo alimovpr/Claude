@@ -1,6 +1,7 @@
 """Собирает contacts.pdf — карточки контактов с фото, чтобы смотреть с телефона.
 
-Запуск: python build_pdf.py [папка выставки] — по умолчанию папка самого скрипта.
+Запуск: python build_pdf.py [папка выставки] [заголовок] — по умолчанию папка самого скрипта.
+--date=ГГГГ-ММ-ДД — только контакты за этот день; --out=путь — куда сохранить (по умолчанию contacts.pdf).
 Нужен node с playwright (печать HTML в PDF через Chromium).
 """
 import base64
@@ -14,7 +15,10 @@ from pathlib import Path
 
 from PIL import Image, ImageOps
 
-HERE = Path(sys.argv[1]).resolve() if len(sys.argv) > 1 else Path(__file__).parent
+ARGS = [a for a in sys.argv[1:] if not a.startswith("--")]
+OPTS = dict(a[2:].split("=", 1) for a in sys.argv[1:] if a.startswith("--") and "=" in a)
+HERE = Path(ARGS[0]).resolve() if ARGS else Path(__file__).parent
+OUT = HERE / OPTS.get("out", "contacts.pdf")
 THUMB_PX = 420
 IMAGE_EXT = {".jpg", ".jpeg", ".png"}
 FIELDS = [
@@ -75,8 +79,11 @@ def card(i, r):
 
 def main():
     rows = json.loads((HERE / "contacts.json").read_text(encoding="utf-8"))
+    if "date" in OPTS:
+        rows = [r for r in rows if r.get("date") == OPTS["date"]]
     rows.sort(key=lambda r: (r["country"], r["company"]))
-    title = sys.argv[2] if len(sys.argv) > 2 else "Контакты с выставки"
+    title = ARGS[1] if len(ARGS) > 1 else "Контакты с выставки"
+    OUT.parent.mkdir(parents=True, exist_ok=True)
     page = (
         f'<!doctype html><html lang="ru"><meta charset="utf-8"><style>{CSS}</style>'
         f"<h1>{html.escape(title)}</h1>"
@@ -90,7 +97,7 @@ def main():
             "const p=await b.newPage();await p.goto('file://'+process.argv[1]);"
             "await p.pdf({path:process.argv[2],format:'A4',printBackground:true});await b.close()})()"
         )
-        subprocess.run(["node", "-e", js, str(src), str(HERE / "contacts.pdf")], check=True)
+        subprocess.run(["node", "-e", js, str(src), str(OUT)], check=True)
 
 
 if __name__ == "__main__":

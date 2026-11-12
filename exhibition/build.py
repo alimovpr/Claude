@@ -2,6 +2,7 @@
 
 Запуск: python build.py [папка выставки] [--simple] — по умолчанию папка самого скрипта.
 --simple — короткая таблица только с контактами (подробности и фото идут в PDF, см. build_pdf.py).
+--date=ГГГГ-ММ-ДД — только контакты за этот день; --out=путь — куда сохранить (по умолчанию contacts.xlsx).
 """
 import io
 import json
@@ -17,6 +18,8 @@ from PIL import Image as PILImage, ImageOps
 SIMPLE = "--simple" in sys.argv
 ARGS = [a for a in sys.argv[1:] if not a.startswith("--")]
 HERE = Path(ARGS[0]).resolve() if ARGS else Path(__file__).parent
+OPTS = dict(a[2:].split("=", 1) for a in sys.argv[1:] if a.startswith("--") and "=" in a)
+OUT = HERE / OPTS.get("out", "contacts.xlsx")
 COLUMNS = [
     ("country", "Страна производства", 14),
     ("category", "Тип компании", 18),
@@ -88,6 +91,8 @@ def add_thumbnails(ws, rows):
 
 def main():
     rows = json.loads((HERE / "contacts.json").read_text(encoding="utf-8"))
+    if "date" in OPTS:
+        rows = [r for r in rows if r.get("date") == OPTS["date"]]
     rows.sort(key=lambda r: (r["country"], r["company"]))
 
     wb = Workbook()
@@ -121,7 +126,8 @@ def main():
     ws.freeze_panes = "C2" if SIMPLE else "D2"
     ws.auto_filter.ref = ws.dimensions
     if SIMPLE:
-        wb.save(HERE / "contacts.xlsx")
+        OUT.parent.mkdir(parents=True, exist_ok=True)
+        wb.save(OUT)
         return
     add_thumbnails(ws, rows)
 
@@ -177,7 +183,8 @@ def main():
         iw.freeze_panes = "A2"
         iw.auto_filter.ref = iw.dimensions
 
-    wb.save(HERE / "contacts.xlsx")
+    OUT.parent.mkdir(parents=True, exist_ok=True)
+    wb.save(OUT)
 
 
 if __name__ == "__main__":
