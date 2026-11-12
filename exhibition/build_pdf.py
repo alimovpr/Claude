@@ -66,7 +66,7 @@ def card(i, r):
         f'<tr><td class="k">{label}</td><td>{e(str(r[key]))}</td></tr>'
         for key, label in FIELDS if r.get(key)
     )
-    meta = " · ".join(e(r[k]) for k in ("category", "country", "city") if r.get(k))
+    meta = " · ".join(e(r[k]) for k in ("category", "country", "city", "date") if r.get(k))
     return (
         f'<div class="card"><h2>{i}. {e(r["company"])}</h2><div class="meta">{meta}</div>'
         f'<div class="photos">{imgs}</div><table>{rows}</table></div>'
