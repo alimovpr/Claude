@@ -1,7 +1,7 @@
 """Собирает contacts.pdf — карточки контактов с фото, чтобы смотреть с телефона.
 
 Запуск: python build_pdf.py [папка выставки] [заголовок] — по умолчанию папка самого скрипта.
---date=ГГГГ-ММ-ДД — только контакты за этот день; --out=путь — куда сохранить (по умолчанию contacts.pdf).
+--date=ГГГГ-ММ-ДД — только контакты за этот день; --show=название — только эта выставка (поле show, по умолчанию Cosmopack); --out=путь — куда сохранить (по умолчанию contacts.pdf).
 Нужен node с playwright (печать HTML в PDF через Chromium).
 """
 import base64
@@ -81,6 +81,8 @@ def main():
     rows = json.loads((HERE / "contacts.json").read_text(encoding="utf-8"))
     if "date" in OPTS:
         rows = [r for r in rows if r.get("date") == OPTS["date"]]
+    if "show" in OPTS:
+        rows = [r for r in rows if r.get("show", "Cosmopack") == OPTS["show"]]
     rows.sort(key=lambda r: (r["country"], r["company"]))
     title = ARGS[1] if len(ARGS) > 1 else "Контакты с выставки"
     OUT.parent.mkdir(parents=True, exist_ok=True)

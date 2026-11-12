@@ -2,7 +2,7 @@
 
 Запуск: python build.py [папка выставки] [--simple] — по умолчанию папка самого скрипта.
 --simple — короткая таблица только с контактами (подробности и фото идут в PDF, см. build_pdf.py).
---date=ГГГГ-ММ-ДД — только контакты за этот день; --out=путь — куда сохранить (по умолчанию contacts.xlsx).
+--date=ГГГГ-ММ-ДД — только контакты за этот день; --show=название — только эта выставка (поле show, по умолчанию Cosmopack); --out=путь — куда сохранить (по умолчанию contacts.xlsx).
 """
 import io
 import json
@@ -93,6 +93,8 @@ def main():
     rows = json.loads((HERE / "contacts.json").read_text(encoding="utf-8"))
     if "date" in OPTS:
         rows = [r for r in rows if r.get("date") == OPTS["date"]]
+    if "show" in OPTS:
+        rows = [r for r in rows if r.get("show", "Cosmopack") == OPTS["show"]]
     rows.sort(key=lambda r: (r["country"], r["company"]))
 
     wb = Workbook()
