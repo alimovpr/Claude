@@ -1,7 +1,7 @@
 """Собирает contacts.pdf — карточки контактов с фото, чтобы смотреть с телефона.
 
 Запуск: python build_pdf.py [папка выставки] [заголовок] — по умолчанию папка самого скрипта.
---date=ГГГГ-ММ-ДД — только контакты за этот день; --show=название — только эта выставка (поле show, по умолчанию Cosmopack); --out=путь — куда сохранить (по умолчанию contacts.pdf).
+--date=ГГГГ-ММ-ДД — только контакты за этот день; --show=название — только эта выставка (поле show, по умолчанию Cosmopack); --ideas — карточки идей из ideas.json; --out=путь — куда сохранить (по умолчанию contacts.pdf).
 Нужен node с playwright (печать HTML в PDF через Chromium).
 """
 import base64
@@ -51,6 +51,18 @@ td.k { width: 32mm; color: #555; }
 """
 
 
+IDEAS = "--ideas" in sys.argv
+if IDEAS:  # те же карточки, но для идей: данные из ideas.json, другие подписи
+    FIELDS = [
+        ("profile", "Что это"),
+        ("discussed", "Чем понравилось"),
+        ("next_step", "Как применить у нас"),
+        ("card_notes", "Чей стенд / бренд"),
+        ("web_info", "Из интернета"),
+    ]
+DATA = "ideas.json" if IDEAS else "contacts.json"
+
+
 def thumb(path):
     im = ImageOps.exif_transpose(Image.open(path)).convert("RGB")
     im.thumbnail((THUMB_PX, THUMB_PX))
@@ -78,12 +90,13 @@ def card(i, r):
 
 
 def main():
-    rows = json.loads((HERE / "contacts.json").read_text(encoding="utf-8"))
+    rows = json.loads((HERE / DATA).read_text(encoding="utf-8"))
     if "date" in OPTS:
         rows = [r for r in rows if r.get("date") == OPTS["date"]]
     if "show" in OPTS:
         rows = [r for r in rows if r.get("show", "Cosmopack") == OPTS["show"]]
-    rows.sort(key=lambda r: (r["country"], r["company"]))
+    if not IDEAS:  # идеи остаются в порядке добавления
+        rows.sort(key=lambda r: (r["country"], r["company"]))
     title = ARGS[1] if len(ARGS) > 1 else "Контакты с выставки"
     OUT.parent.mkdir(parents=True, exist_ok=True)
     page = (
